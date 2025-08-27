@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile Picture Upload</title>
+</head>
+<body>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Upload</button>
+    </form>
+    
+    <hr>
+
+    <h2>Uploaded Profiles</h2>
+    {% for profile in profiles %}
+        <div>
+            <strong>{{ profile.name }}</strong><br>
+            <img src="{{ profile.profile_pic.url }}" alt="{{ profile.name }}" width="200">
+        </div>
+        <br>
+    {% empty %}
+        <p>No profiles uploaded yet.</p>
+    {% endfor %}
+</body>
+</html>
